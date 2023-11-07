@@ -127,7 +127,7 @@ function ListaDeItens() {
                     />
 
                     <div className='classi'>
-                      Classificação:
+                      Estrelas:
                       <select className='selcionar'
                         value={item.classificacao}
                         onChange={(e) => {
@@ -144,7 +144,7 @@ function ListaDeItens() {
                         <option value="5">⭐⭐⭐⭐⭐</option>
                       </select>
                     </div>
-                    <button className='btSalvar' onClick={() => salvarEdicaoDetalhes(indice)}>Salvar</button>
+                    <button className='marcarLido' onClick={() => salvarEdicaoDetalhes(indice)}>Salvar</button>
                   </div>
                 ) : (
                   <div className='txDetalhes'>
