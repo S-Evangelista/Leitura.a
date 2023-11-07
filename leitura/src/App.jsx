@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css'
 
 function ListaDeItens() {
   const [itens, setItens] = useState([]);
@@ -21,7 +22,7 @@ function ListaDeItens() {
     if (textoDeEntrada.trim() !== '') {
       const novoItem = {
         titulo: textoDeEntrada,
-        status: 'Para Ler',
+        status: '',
         resumo: '',
         autor: '',
         classificacao: 0,
@@ -34,7 +35,7 @@ function ListaDeItens() {
 
   const alternarStatusParaLido = (indice) => {
     const itensAtualizados = [...itens];
-    itensAtualizados[indice].status = 'Lido';
+    itensAtualizados[indice].status = '*';
     setItens(itensAtualizados);
     salvarDetalhesNoLocalStorage(itensAtualizados);
   };
@@ -83,25 +84,27 @@ function ListaDeItens() {
 
   return (
     <div>
-      <h2 className='titulo1'> Acervo </h2>
+      <h2 className='titulo1'>~ Acervo ~</h2>
       <div className='subtitulo'>
         <p className='titulos'>Títulos: {contadorItensNaLista}</p>
-        <p className='lidos'>Lidos: {contadorItensLidos}</p>
+        <p className='titulos'>Lidos: {contadorItensLidos}</p>
       </div>
       <ul>
         {itens.map((item, indice) => (
-          <li key={indice}>
+          <li className='item' key={indice}>
             {item.titulo} - {item.status}
             {item.status === 'Para Ler' && (
               <button className='marcarLido' onClick={() => alternarStatusParaLido(indice)}>Marcar como Lido</button>
             )}
-            <button className='btDetalhes' onClick={() => alternarDetalhes(indice)}>Detalhes</button>
-            <button className='btExcluirT' onClick={() => excluirItem(indice)}>Excluir título</button>
+            
+            <button className='marcarLido' onClick={() => alternarDetalhes(indice)}>Detalhes</button>
+            <button className='marcarLido' onClick={() => excluirItem(indice)}>Excluir título</button>
+            
             {item.detalhesVisiveis && (
               <div>
                 {edicaoDetalhes.indice === indice ? (
                   <div>
-                    <input
+                    <input 
                       type="text"
                       placeholder="Resumo"
                       value={item.resumo}
@@ -125,7 +128,7 @@ function ListaDeItens() {
 
                     <div className='classi'>
                       Classificação:
-                      <select
+                      <select className='selcionar'
                         value={item.classificacao}
                         onChange={(e) => {
                           const itensAtualizados = [...itens];
@@ -134,24 +137,25 @@ function ListaDeItens() {
                         }}
                       >
                         <option className='selecione' value="0">Selecione</option>
-                        <option value="⭐">⭐</option>
-                        <option value="⭐⭐">⭐⭐</option>
-                        <option value="⭐⭐⭐">⭐⭐⭐</option>
-                        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-                        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
                       </select>
                     </div>
                     <button className='btSalvar' onClick={() => salvarEdicaoDetalhes(indice)}>Salvar</button>
                   </div>
                 ) : (
-                  <div>
+                  <div className='txDetalhes'>
                     <p className='detalhe'>Resumo: {item.resumo}</p>
                     <p className='detalhe'>Autor: {item.autor}</p>
                     <p className='detalhe'>Classificação: {item.classificacao}</p>
-                    <button className='btEditar' onClick={() => iniciarEdicaoDetalhes(indice)}>Editar</button>
+                    <button className='marcarLido' onClick={() => iniciarEdicaoDetalhes(indice)}>Editar</button>
+                    <button className='marcarLido' onClick={() => fecharDetalhes(indice)}>Ver menos</button>
                   </div>
                 )}
-                <button className='btVerMenos' onClick={() => fecharDetalhes(indice)}>Ver menos</button>
+
               </div>
             )}
           </li>
@@ -163,8 +167,8 @@ function ListaDeItens() {
           value={textoDeEntrada}
           onChange={(e) => setTextoDeEntrada(e.target.value)}
         />
-        <button className='btAdiconar' onClick={adicionarItem}>Adicionar título</button>
-        <button className='btLimpar' onClick={limparItens}>Limpar acervo</button>
+        <button className='btAdicionar' onClick={adicionarItem}>Adicionar título</button>
+        <button className='btAdicionar' onClick={limparItens}>Limpar acervo</button>
       </div>
     </div>
   );

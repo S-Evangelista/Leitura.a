@@ -2,6 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  background-color: antiquewhite;
   text-align: center;
 }
 
@@ -10,5 +11,65 @@
 }
 
 .titulo1{
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
 }
+
+.subtitulo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.titulos{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+}
+
+.btAdicionar{
+  margin: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  border-color: black
+
+}
+.classi {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+input{
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border-color: #696969;
+}
+
+.selecionar{
+  padding: 5px;
+}
+
+.item{
+  justify-content: space-between;
+  background-color: white;
+}
+
+.marcarLido{
+  background-color:antiquewhite;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: small;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ 
+}
+.txDetalhes{
+  margin: 10px;
+  background-color: white;
+  justify-content: start;
+
+}
+
