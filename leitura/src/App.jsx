@@ -98,7 +98,7 @@ function ListaDeItens() {
             )}
             
             <button className='marcarLido' onClick={() => alternarDetalhes(indice)}>Detalhes</button>
-            <button className='marcarLido' onClick={() => excluirItem(indice)}>Excluir título</button>
+            <button className='marcarLido' onClick={() => excluirItem(indice)}>Excluir</button>
             
             {item.detalhesVisiveis && (
               <div>
