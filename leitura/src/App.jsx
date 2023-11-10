@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'
+import './App.css';
 
 function ListaDeItens() {
   const [itens, setItens] = useState([]);
   const [textoDeEntrada, setTextoDeEntrada] = useState('');
   const [edicaoDetalhes, setEdicaoDetalhes] = useState({ indice: null });
 
-  // Carregar dados salvos do localStorage ao iniciar
   useEffect(() => {
     const savedItens = JSON.parse(localStorage.getItem('itens'));
     if (savedItens) {
@@ -35,7 +34,7 @@ function ListaDeItens() {
 
   const alternarStatusParaLido = (indice) => {
     const itensAtualizados = [...itens];
-    itensAtualizados[indice].status = '*';
+    itensAtualizados[indice].status = 'Lido';
     setItens(itensAtualizados);
     salvarDetalhesNoLocalStorage(itensAtualizados);
   };
@@ -76,12 +75,9 @@ function ListaDeItens() {
     localStorage.removeItem('itens'); // Remove os itens do localStorage
   };
 
-  // Contador para itens na lista
   const contadorItensNaLista = itens.length;
 
-  // Contador para itens marcados como Lidos
   const contadorItensLidos = itens.filter((item) => item.status === 'Lido').length;
-
   return (
     <div>
       <h2 className='titulo1'>~ Acervo ~</h2>
@@ -93,7 +89,8 @@ function ListaDeItens() {
         {itens.map((item, indice) => (
           <li className='item' key={indice}>
             {item.titulo} - {item.status}
-            {item.status === 'Para Ler' && (
+            
+            {item.status === '' && (
               <button className='marcarLido' onClick={() => alternarStatusParaLido(indice)}>Marcar como Lido</button>
             )}
             
@@ -114,7 +111,7 @@ function ListaDeItens() {
                         setItens(itensAtualizados);
                       }}
                     />
-
+  
                     <input
                       type="text"
                       placeholder="Autor"
@@ -125,10 +122,11 @@ function ListaDeItens() {
                         setItens(itensAtualizados);
                       }}
                     />
-
+  
                     <div className='classi'>
                       Estrelas:
-                      <select className='selcionar'
+                      <select
+                        className='selcionar'
                         value={item.classificacao}
                         onChange={(e) => {
                           const itensAtualizados = [...itens];
@@ -153,9 +151,8 @@ function ListaDeItens() {
                     <p className='detalhe'>Classificação: {item.classificacao}</p>
                     <button className='marcarLido' onClick={() => iniciarEdicaoDetalhes(indice)}>Editar</button>
                     <button className='marcarLido' onClick={() => fecharDetalhes(indice)}>Ver menos</button>
-                  </div>
-                )}
-
+                  </div> 
+                  )}
               </div>
             )}
           </li>
@@ -172,6 +169,5 @@ function ListaDeItens() {
       </div>
     </div>
   );
-}
-
+};
 export default ListaDeItens;
