@@ -90,10 +90,6 @@ function ListaDeItens() {
           <li className='item' key={indice}>
             {item.titulo} - {item.status}
             
-            {item.status === '' && (
-              <button className='marcarLido' onClick={() => alternarStatusParaLido(indice)}>Marcar como Lido</button>
-            )}
-            
             <button className='marcarLido' onClick={() => alternarDetalhes(indice)}>Detalhes</button>
             <button className='marcarLido' onClick={() => excluirItem(indice)}>Excluir</button>
             
@@ -151,8 +147,11 @@ function ListaDeItens() {
                     <p className='detalhe'>Classificação: {item.classificacao}</p>
                     <button className='marcarLido' onClick={() => iniciarEdicaoDetalhes(indice)}>Editar</button>
                     <button className='marcarLido' onClick={() => fecharDetalhes(indice)}>Ver menos</button>
-                  </div> 
-                  )}
+                    {item.status === '' && (
+                      <button className='marcarLido' onClick={() => alternarStatusParaLido(indice)}>Marcar como Lido</button>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </li>
